@@ -13,6 +13,6 @@ Alpine.store('App', {
   },
 
   click() {
-    console.log('clicked')
+    console.log('clicked v1')
   }
 })
