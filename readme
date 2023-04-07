@@ -1,0 +1,13 @@
+
+
+
+## Fix
+- When instaling dep fix this typing in Alpine
+store<R>( storeName: string ) : R;
+/**
+  * Sets state in the global store.
+  *
+  * @param name state key
+  * @param value the initial state value
+  */
+store<R>( storeName: string, value : R ) : void

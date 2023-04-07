@@ -8,9 +8,16 @@
   <body>
     <div x-data id="app">
       <a @click="$store.App.click()">Click me</a>
+      <p x-text="$store.Auth.user?.name"></p>
+
+      <input type="email" placeholder="email" x-model="$store.Auth.signInData.email">
+      <input type="password" x-model="$store.Auth.signInData.password">
+      <button x-on:click="$store.Auth.signIn()">Sign in</button>
+
+      <div x-if="$store.Auth.isSignedIn">
+        <button x-on:click="$store.Auth.signOut()">Sign out</button>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
-
-// https://cdn.jsdelivr.net/gh/hanskristoffer/flair-website/dist/index.js

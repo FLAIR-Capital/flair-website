@@ -1,18 +1,18 @@
 import Alpine from 'alpinejs'
+import { api } from './api'
+import './auth'
+import './init'
 
-//@ts-ignore
-window.Alpine = Alpine
- 
-Alpine.start()
-
-console.log('heey', Alpine)
 
 Alpine.store('App', {
+  user: 'my user',
+  
   init() {
     console.log('App store initialized')
   },
 
-  click() {
-    console.log('clicked v1')
+  async click() {
+    const res = await api.testApiCall()
+    console.log("🚀 ~ file: main.ts:23 ~ click ~ res:", res)
   }
 })
