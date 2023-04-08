@@ -17,6 +17,16 @@
       <div x-if="$store.Auth.isSignedIn">
         <button x-on:click="$store.Auth.signOut()">Sign out</button>
       </div>
+
+      <div>
+        <a x-on:click="$store.Notify.add({ type: 'Danger', message: 'Fejl i kode' })">Create notification</a>
+
+        <div x-for="notification in $store.Notify.notifications" :id="notification.id" :key="notification.id">
+          <div x-text="notification.message"></div>
+          <div x-text="notification.type"></div>
+          <button x-on:click="$store.Notify.remove(notification.id)">Remove</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

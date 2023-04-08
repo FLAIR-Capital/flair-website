@@ -63,6 +63,8 @@ function removeUnnecessaryAttributeValues (el: any) {
 }
 
 function init() {
+  document.body.setAttribute('x-data', '')
+
   document.querySelectorAll('[x-data],[x-data] *').forEach((el) => {
     replaceDotAttributes(el)
     removeUnnecessaryAttributeValues(el)
@@ -71,8 +73,21 @@ function init() {
   document.querySelectorAll('[x-data] [x-for], [x-data] [x-if]').forEach(wrapInTemplate)
 }
 
-init()
+
 window.Alpine = Alpine
-Alpine.start()
+
+//@ts-ignore
+if (window.Webflow) {
+  //@ts-ignore
+  window.Webflow.push(() => {
+    // console.log('webflow init', document.querySelectorAll('[x-data] [x-for], [x-data] [x-if]'))
+    init()
+    Alpine.start()
+  })
+} else {
+  // console.log('normal init')
+  init()
+  Alpine.start()
+}
 
 export {}

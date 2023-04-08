@@ -1,8 +1,11 @@
+
+
 import Alpine from 'alpinejs'
 import { api } from './api'
 import './auth'
-import './init'
+import './notify'
 
+import './init'
 
 Alpine.store('App', {
   user: 'my user',
@@ -16,3 +19,5 @@ Alpine.store('App', {
     console.log("🚀 ~ file: main.ts:23 ~ click ~ res:", res)
   }
 })
+
+console.log('heey', Alpine.store('Auth'))

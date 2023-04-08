@@ -11,8 +11,10 @@ Alpine.store<{
   user: null | { name: string }
   
   init: () => void
-  signIn: () => void
-  signOut: () => void
+  signIn: (navigateTo?: string) => void
+  signOut: (navigateTo?: string) => void
+
+  signUp: () => void
 }>('Auth', {
   signInData: {
     email: null,
@@ -41,7 +43,7 @@ Alpine.store<{
     })
   },
 
-  async signIn() {
+  async signIn(navigateTo) {
     console.log('Signing in...')
     
     const signInResult = await supabase.auth.signInWithPassword({
@@ -54,10 +56,33 @@ Alpine.store<{
       password: null
     }
 
+    if (navigateTo) {
+      window.location.href = navigateTo
+    }
+
     console.log('signInResult', signInResult)
   },
 
-  signOut() {
-    supabase.auth.signOut()
+  async signOut(navigateTo) {
+    console.log('sign out')
+    await supabase.auth.signOut()
+
+    if (navigateTo) {
+      window.location.href = navigateTo
+    }
+
+  },
+
+  async signUp() {
+    console.log('sign up')
+    await supabase.auth.signUp({
+      email: 'asd',
+      password: 'asd',
+      options: {
+        data: {
+          isInvestor: true
+        }
+      }
+    })
   }
 })

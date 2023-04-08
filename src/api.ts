@@ -17,6 +17,7 @@ class Api {
     if (authSession.data.session?.access_token) {
       return authSession.data.session.access_token
     }
+    return undefined
   }
 
   async request(data: RequestData) {
